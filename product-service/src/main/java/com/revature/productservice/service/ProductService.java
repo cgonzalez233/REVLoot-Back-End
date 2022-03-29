@@ -18,6 +18,13 @@ public class ProductService {
 
     }
 
+    public Product[] addProducts(Product product[]){
+        for(Product products : product){
+            repository.save(products);
+        }
+        return product;
+    }
+
     public Product getProductByName(String name){
         return repository.findByProductName(name);
     }

@@ -11,32 +11,37 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
 
-  @Autowired
-  private ProductService service;
+    @Autowired
+    private ProductService service;
 
-  @GetMapping
-  public List<Product> getAllProduct() {
-    return service.getAllProduct();
-  }
+    @GetMapping
+    public List<Product> getAllProduct() {
+        return service.getAllProduct();
+    }
 
-  @GetMapping("/get/{productName}")
-  public Product getProductByName(@PathVariable("productName") String productName) {
-    return service.getProductByName(productName);
-  }
+    @GetMapping("/get/{productName}")
+    public Product getProductByName(@PathVariable("productName") String productName) {
+        return service.getProductByName(productName);
+    }
 
-  @GetMapping("/{id}")
-  public Product getProductById(@PathVariable("id") Long id) {
-    return service.getProductById(id);
-  }
+    @GetMapping("/{id}")
+    public Product getProductById(@PathVariable("id") Long id) {
+        return service.getProductById(id);
+    }
 
-  @PostMapping
-  public Product addProduct(@RequestBody Product product) {
-    return service.addProduct(product);
-  }
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        return service.addProduct(product);
+    }
 
-  @PutMapping("/{id}")
-  public String updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
-    service.updateProduct(id, product);
-    return "product updated successfully";
-  }
+    @PostMapping("/add")
+    public Product[] addProducts(@RequestBody Product[] product){
+        return service.addProducts(product);
+    }
+
+    @PutMapping("/{id}")
+    public String updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
+        service.updateProduct(id, product);
+        return "product updated successfully";
+    }
 }
