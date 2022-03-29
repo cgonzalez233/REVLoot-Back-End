@@ -1,9 +1,6 @@
 package com.revature.productservice.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 import javax.persistence.*;
@@ -12,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Builder
 public class Product {
 
@@ -21,6 +19,6 @@ public class Product {
     private String productName;
     private double price;
     private String description;
-    private String productQty;
+    private int productQty;
     private String productImage;
 }
