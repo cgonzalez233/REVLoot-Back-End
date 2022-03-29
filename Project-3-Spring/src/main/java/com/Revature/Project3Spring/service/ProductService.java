@@ -1,8 +1,10 @@
-package com.revature.productservice.service;
+package com.Revature.Project3Spring.service;
 
-import com.revature.productservice.entity.Product;
-import com.revature.productservice.repository.ProductRepository;
+
+import com.Revature.Project3Spring.entity.Product;
+import com.Revature.Project3Spring.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,4 +30,7 @@ public class ProductService {
     public List<Product> getAllProduct(){
         return repository.findAll();
     }
+
+
+
 }

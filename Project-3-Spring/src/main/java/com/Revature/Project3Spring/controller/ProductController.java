@@ -1,14 +1,14 @@
-package com.revature.productservice.controller;
+package com.Revature.Project3Spring.controller;
 
-import com.revature.productservice.entity.Product;
-import com.revature.productservice.service.ProductService;
+
+import com.Revature.Project3Spring.entity.Product;
+import com.Revature.Project3Spring.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
@@ -28,4 +28,5 @@ public class ProductController {
     public Product addProduct(@RequestBody Product product){
         return service.addProduct(product);
     }
+
 }
