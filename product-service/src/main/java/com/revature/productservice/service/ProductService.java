@@ -30,7 +30,7 @@ public class ProductService {
         return repository.findAll();
     }
 
-    public void updateProduct(long id, Product product){
+    public void updateProduct(Long id, Product product){
         Product productDb = repository.findByProductId(id);
         productDb.setProductName(product.getProductName());
         productDb.setProductQty(product.getProductQty());
