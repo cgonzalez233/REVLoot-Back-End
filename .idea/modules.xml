@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Project-3-Spring/Project-3-Spring.iml" filepath="$PROJECT_DIR$/Project-3-Spring/Project-3-Spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/REVLoot-Back-End.iml" filepath="$PROJECT_DIR$/.idea/REVLoot-Back-End.iml" />
+      <module fileurl="file://$PROJECT_DIR$/checkout-service/checkout-service.iml" filepath="$PROJECT_DIR$/checkout-service/checkout-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" filepath="$PROJECT_DIR$/cloud-gateway/cloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/login-service/login-service.iml" filepath="$PROJECT_DIR$/login-service/login-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/product-service/product-service.iml" filepath="$PROJECT_DIR$/product-service/product-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service-registry/service-registry.iml" filepath="$PROJECT_DIR$/service-registry/service-registry.iml" />
+    </modules>
+  </component>
+</project>
