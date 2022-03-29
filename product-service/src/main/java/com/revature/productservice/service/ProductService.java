@@ -23,7 +23,8 @@ public class ProductService {
     }
 
     public Product getProductById(Long id){
-        return repository.findByProductId(id);
+        return repository.findById(id).get();
+
     }
 
     public List<Product> getAllProduct(){
@@ -31,7 +32,7 @@ public class ProductService {
     }
 
     public void updateProduct(Long id, Product product){
-        Product productDb = repository.findByProductId(id);
+        Product productDb = repository.findById(id).get();
         productDb.setProductName(product.getProductName());
         productDb.setProductQty(product.getProductQty());
         productDb.setPrice(product.getPrice());

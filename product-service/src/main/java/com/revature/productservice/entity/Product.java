@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Builder
 public class Product {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
