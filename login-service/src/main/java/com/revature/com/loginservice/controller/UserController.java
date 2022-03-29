@@ -1,8 +1,10 @@
 package com.revature.com.loginservice.controller;
 
 import com.revature.com.loginservice.entity.User;
+import com.revature.com.loginservice.exception.UserException;
 import com.revature.com.loginservice.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,17 +28,31 @@ public class UserController {
 
     @GetMapping(params = { "email", "password" })
     public User getUserByCredentials(@RequestParam String email, @RequestParam String password) {
-        return userService.getUserByCredentials(email, password);
+        User user = userService.getUserByCredentials(email, password);
+        if(user == null){
+            throw new UserException("User not found with those credentials.");
+        }
+        return user;
     }
 
     @PostMapping
     public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+        try {
+            return userService.addUser(user);
+        }
+        catch (DataIntegrityViolationException dive){
+            throw new UserException("Registration failed. User already exists with that email.");
+        }
     }
 
     @PutMapping("/{id}")
     public void updateUser(@PathVariable("id") Long id, @RequestBody User user) {
-        userService.updateUser(id, user);
+        try {
+            userService.updateUser(id, user);
+        }
+        catch (DataIntegrityViolationException dive){
+            throw new UserException("Update failed. Another User already exists with that email.");
+        }
     }
 
     @DeleteMapping("/{id}")
