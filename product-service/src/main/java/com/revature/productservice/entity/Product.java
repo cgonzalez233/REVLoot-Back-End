@@ -21,4 +21,13 @@ public class Product {
     private String description;
     private int productQty;
     private String productImage;
+
+    public Product(String name, double price, String description,
+                   int quantity, String image){
+        this.productName = name;
+        this.price=price;
+        this.description=description;
+        this.productQty = quantity;
+        this.productImage = image;
+    }
 }
