@@ -29,7 +29,7 @@ public class ProductController {
         return service.addProduct(product);
     }
 
-    @PutMapping("/product/{id}")
+    @PutMapping("/products/{id}")
     public String updateProduct(@PathVariable("id") long id, @RequestBody Product product){
         service.updateProduct(id, product);
         return "product updated successfully";
