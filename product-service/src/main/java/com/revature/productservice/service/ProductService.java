@@ -15,6 +15,7 @@ public class ProductService {
 
     public Product addProduct(Product product){
         return repository.save(product);
+
     }
 
     public Product getProductByName(String name){
@@ -27,5 +28,16 @@ public class ProductService {
 
     public List<Product> getAllProduct(){
         return repository.findAll();
+    }
+
+    public void updateProduct(long id, Product product){
+        Product productDb = repository.findByProductId(id);
+        productDb.setProductName(product.getProductName());
+        productDb.setProductQty(product.getProductQty());
+        productDb.setPrice(product.getPrice());
+        productDb.setDescription(product.getDescription());
+        repository.save(productDb);
+
+
     }
 }

@@ -19,7 +19,7 @@ public class ProductController {
         return service.getAllProduct();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/products/{id}")
     public Product getProductById(@PathVariable("id") Long id){
         return service.getProductById(id);
     }
@@ -27,5 +27,11 @@ public class ProductController {
     @PostMapping
     public Product addProduct(@RequestBody Product product){
         return service.addProduct(product);
+    }
+
+    @PutMapping("/product/{id}")
+    public String updateProduct(@PathVariable("id") long id, @RequestBody Product product){
+        service.updateProduct(id, product);
+        return "product updated successfully";
     }
 }
