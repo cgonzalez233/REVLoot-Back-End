@@ -21,3 +21,15 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/api/v1/products/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders:
+              - content-type
+              - X-Requested-With
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
