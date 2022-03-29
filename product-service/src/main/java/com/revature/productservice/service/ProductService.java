@@ -24,7 +24,6 @@ public class ProductService {
 
     public Product getProductById(Long id){
         return repository.findById(id).get();
-
     }
 
     public List<Product> getAllProduct(){
