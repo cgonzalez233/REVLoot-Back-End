@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     public void updateUser(Long id, User user) {
         User userDb = repository.findById(id).get();
         userDb.setEmail(user.getEmail());
-        userDb.setPassword(user.getPassword());
+        userDb.setPassword(passwordEncoder.encode(user.getPassword()));
         userDb.setFirstName(user.getFirstName());
         userDb.setLastName(user.getLastName());
         repository.save(userDb);
