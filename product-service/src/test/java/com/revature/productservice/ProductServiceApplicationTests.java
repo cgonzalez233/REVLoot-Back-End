@@ -18,9 +18,9 @@ class ProductServiceApplicationTests {
 
 	@BeforeEach
 	void setup(){
-		this.products[0] = new Product("plumbus",12,"usefull scruber",20,"image url");
-		this.products[1] = new Product("sleem",23,"usefull tool",30,"image url");
-		this.products[2] = new Product("box cutter",13,"cut boxes",20,"image url");
+		this.products[0] = new Product("File Cabinet",12,"usefull scruber",20,"image url");
+		this.products[1] = new Product("Chair",23,"usefull tool",30,"image url");
+		this.products[2] = new Product("Box cutter",13,"cut boxes",20,"image url");
 	}
 
 	@Test

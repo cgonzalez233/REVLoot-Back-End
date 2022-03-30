@@ -13,7 +13,21 @@ spring:
           uri: lb://USER-SERVICE
           predicates:
             - Path=/users/**
-#        - id: DEPARTMENT-SERVICE
-#          uri: lb://DEPARTMENT-SERVICE
-#          predicates:
-#            - Path=/departments/**
+        - id: PRODUCT-SERVICE
+          uri: lb://PRODUCT-SERVICE
+          predicates:
+              - Path=/products/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedHeaders:
+              - content-type
+              - X-Requested-With
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+
+

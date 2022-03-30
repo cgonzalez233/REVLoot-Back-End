@@ -48,7 +48,12 @@ public class ProductService {
     }
 
     public void deleteProduct(Long id){
+<<<<<<< HEAD
         repository.deleteById(id);
+=======
+        Product productDb = repository.findById(id).get();
+        repository.delete(productDb);
+>>>>>>> ccba43db14c896cda91005f663b71d42716289e7
     }
 
 
