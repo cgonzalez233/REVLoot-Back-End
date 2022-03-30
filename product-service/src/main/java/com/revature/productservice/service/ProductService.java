@@ -18,6 +18,7 @@ public class ProductService {
 
     }
 
+    // Add all the products onto the database from JSON array
     public Product[] addProducts(Product product[]){
         for(Product products : product){
             repository.save(products);
@@ -25,7 +26,7 @@ public class ProductService {
         return product;
     }
 
-    public Product getProductByName(String name){
+    public List<Product> getProductByName(String name){
         return repository.findByProductName(name);
     }
 
@@ -44,7 +45,11 @@ public class ProductService {
         productDb.setPrice(product.getPrice());
         productDb.setDescription(product.getDescription());
         repository.save(productDb);
-
-
     }
+
+    public void deleteProduct(Long id){
+        repository.deleteById(id);
+    }
+
+
 }
