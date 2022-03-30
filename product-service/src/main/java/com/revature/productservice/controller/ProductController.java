@@ -52,13 +52,5 @@ public class ProductController {
         service.deleteProduct(id);
     }
 
-<<<<<<< HEAD
 
-=======
-    @DeleteMapping("rm/{id}")
-    public String deleteProduct(@PathVariable("id") Long id){
-        service.deleteProduct(id);
-        return "product has been deleted";
-    }
->>>>>>> ccba43db14c896cda91005f663b71d42716289e7
 }
