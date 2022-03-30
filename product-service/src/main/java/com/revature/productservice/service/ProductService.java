@@ -44,7 +44,10 @@ public class ProductService {
         productDb.setPrice(product.getPrice());
         productDb.setDescription(product.getDescription());
         repository.save(productDb);
+    }
 
-
+    public void deleteProduct(Long id){
+        Product productDb = repository.findById(id).get();
+        repository.delete(productDb);
     }
 }

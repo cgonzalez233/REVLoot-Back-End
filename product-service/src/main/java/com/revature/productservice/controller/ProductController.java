@@ -3,6 +3,7 @@ package com.revature.productservice.controller;
 import com.revature.productservice.entity.Product;
 import com.revature.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -43,5 +44,11 @@ public class ProductController {
     public String updateProduct(@PathVariable("id") Long id, @RequestBody Product product) {
         service.updateProduct(id, product);
         return "product updated successfully";
+    }
+
+    @DeleteMapping("rm/{id}")
+    public String deleteProduct(@PathVariable("id") Long id){
+        service.deleteProduct(id);
+        return "product has been deleted";
     }
 }
