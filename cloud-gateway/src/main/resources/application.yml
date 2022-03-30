@@ -9,6 +9,7 @@ spring:
   cloud:
     gateway:
       routes:
+
         - id: CHECKOUT-SERVICE
           uri: lb://CHECKOUT-SERVICE
           predicates:
@@ -21,6 +22,7 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/api/v1/products/**
+
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -33,3 +35,4 @@ spring:
               - POST
               - PUT
               - DELETE
+

@@ -15,17 +15,41 @@ public class ProductService {
 
     public Product addProduct(Product product){
         return repository.save(product);
+
     }
 
-    public Product getProductByName(String name){
+    // Add all the products onto the database from JSON array
+    public Product[] addProducts(Product product[]){
+        for(Product products : product){
+            repository.save(products);
+        }
+        return product;
+    }
+
+    public List<Product> getProductByName(String name){
         return repository.findByProductName(name);
     }
 
     public Product getProductById(Long id){
-        return repository.findByProductId(id);
+        return repository.findById(id).get();
     }
 
     public List<Product> getAllProduct(){
         return repository.findAll();
     }
+
+    public void updateProduct(Long id, Product product){
+        Product productDb = repository.findById(id).get();
+        productDb.setProductName(product.getProductName());
+        productDb.setProductQty(product.getProductQty());
+        productDb.setPrice(product.getPrice());
+        productDb.setDescription(product.getDescription());
+        repository.save(productDb);
+    }
+
+    public void deleteProduct(Long id){
+        repository.deleteById(id);
+    }
+
+
 }

@@ -8,5 +8,5 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/thevarungupta1/cloud-server-2
+          uri: https://github.com/sbboo22/configserver
           clone-on-start: true
