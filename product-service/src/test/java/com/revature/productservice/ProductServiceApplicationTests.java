@@ -10,6 +10,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 class ProductServiceApplicationTests {
 	@Autowired
@@ -48,7 +50,8 @@ class ProductServiceApplicationTests {
 	@Test
 	void getProductByName(){
 		service.addProducts(this.products);
-		assert(service.getProductByName(this.products[0].getProductName()).equals(products[0]));
+		List<Product> foundproducts = service.getProductByName(this.products[0].getProductName());
+		assert(foundproducts.get(0).getPrice() == this.products[0].getPrice());
 	}
 
 
