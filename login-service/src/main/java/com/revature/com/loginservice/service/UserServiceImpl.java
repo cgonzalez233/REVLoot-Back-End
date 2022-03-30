@@ -3,6 +3,7 @@ package com.revature.com.loginservice.service;
 import com.revature.com.loginservice.entity.User;
 import com.revature.com.loginservice.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,6 +12,9 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository repository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public List<User> getAllUsers() {
@@ -24,11 +28,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByCredentials(String email, String password) {
-        return repository.findByEmailAndPassword(email, password);
+        User user = repository.findByEmail(email);
+        if(user==null)
+            return null;
+        if(passwordEncoder.matches(password, user.getPassword()))
+            return user;
+        return null;
+    }
+
+    @Override
+    public User getUserByEmail(String email){
+        return repository.findByEmail(email);
     }
 
     @Override
     public User addUser(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         return repository.save(user);
     }
 
@@ -36,7 +51,8 @@ public class UserServiceImpl implements UserService {
     public void updateUser(Long id, User user) {
         User userDb = repository.findById(id).get();
         userDb.setEmail(user.getEmail());
-        userDb.setPassword(user.getPassword());
+        if(user.getPassword() != null)
+            userDb.setPassword(passwordEncoder.encode(user.getPassword()));
         userDb.setFirstName(user.getFirstName());
         userDb.setLastName(user.getLastName());
         repository.save(userDb);
