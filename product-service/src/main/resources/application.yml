@@ -7,4 +7,4 @@ spring:
   config:
     import:
       optional:
-        configserver: http://localhost:9001
+        configserver: http://localhost:9296
