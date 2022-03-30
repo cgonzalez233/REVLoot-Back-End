@@ -9,14 +9,20 @@ spring:
   cloud:
     gateway:
       routes:
-        - id: USER-SERIVCE
-          uri: lb://USER-SERVICE
+
+        - id: CHECKOUT-SERVICE
+          uri: lb://CHECKOUT-SERVICE
           predicates:
-            - Path=/users/**
+            - Path=/api/v1/checkout/**
+        - id: LOGIN-SERVICE
+          uri: lb://LOGIN-SERVICE
+          predicates:
+            - Path=/api/v1/users/**
         - id: PRODUCT-SERVICE
           uri: lb://PRODUCT-SERVICE
           predicates:
-              - Path=/products/**
+            - Path=/api/v1/products/**
+
       globalcors:
         corsConfigurations:
           '[/**]':
@@ -29,5 +35,4 @@ spring:
               - POST
               - PUT
               - DELETE
-
 

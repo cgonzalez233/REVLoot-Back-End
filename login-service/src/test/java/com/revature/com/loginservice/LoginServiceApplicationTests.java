@@ -1,4 +1,4 @@
-package com.revature.loginservice;
+package com.revature.com.loginservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
