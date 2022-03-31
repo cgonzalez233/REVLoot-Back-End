@@ -51,5 +51,9 @@ public class ProductService {
         repository.deleteById(id);
     }
 
+    public Iterable<Product> saveToDb(List<Product> product){
+        return repository.saveAll(product);
+    }
+
 
 }
