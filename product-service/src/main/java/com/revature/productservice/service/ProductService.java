@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ProductService {
@@ -51,8 +52,19 @@ public class ProductService {
         repository.deleteById(id);
     }
 
+
     public Iterable<Product> saveToDb(List<Product> product){
         return repository.saveAll(product);
+
+    public List<String> getProductNames(){
+        List<Product> productList = repository.findAll();
+
+        List<String> stringList = productList.stream()
+                .map(Product::getProductName)
+                .collect(Collectors.toList());
+
+        return stringList;
+
     }
 
 
