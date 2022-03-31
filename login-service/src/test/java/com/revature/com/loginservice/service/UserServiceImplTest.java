@@ -48,6 +48,7 @@ class UserServiceImplTest {
                 new User(1L, "test", "test", "test", "test")
         );
 
+        //Tests both that service is using rep.findAll() and that service is piping return.
         when(repository.findAll()).thenReturn(users);
         assertEquals(service.getAllUsers(), users);
 
@@ -56,16 +57,20 @@ class UserServiceImplTest {
     @Test
     void getUserById() {
         ArgumentCaptor<Long> longArgumentCaptor = ArgumentCaptor.forClass(Long.class);
+
         service.getUserById(1L);
+
+        //Verifies that service is piping argument to repository method.
         verify(repository).findById(longArgumentCaptor.capture());
         Long passed1 = longArgumentCaptor.getValue();
         assertEquals(passed1, 1L);
 
+        //Testing .orElse(null) in method
         Optional<User> e = Optional.empty();
-
         Mockito.when(repository.findById(1L)).thenReturn(e);
         assertNull(service.getUserById(1L));
 
+        //Testing that service is only unwrapping Optional from repository.
         User user = new User();
         user.setUserId(2L);
         Mockito.when(repository.findById(2L)).thenReturn(Optional.of(user));
@@ -75,27 +80,40 @@ class UserServiceImplTest {
     @Test
     void getUserByCredentials() {
         ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
-
         service.getUserByCredentials("test@email.com", "test@email.com");
+
+        //Verifies that service is piping email argument to repository method.
         verify(repository).findByEmail(stringArgumentCaptor.capture());
         assertEquals(stringArgumentCaptor.getValue(), "test@email.com");
+
+        //Checking no user found by findByEmail returns null.
         Mockito.when(repository.findByEmail("nullTest")).thenReturn(null);
+        assertNull(service.getUserByCredentials("nullTest", "pass"));
+
+        //Verifying password mismatch case returns null.
         User passfail = new User();
         passfail.setPassword(encoder.encode("FAIL"));
         Mockito.when(repository.findByEmail("passwordFail")).thenReturn(passfail);
+        assertNull(service.getUserByCredentials("passwordFail", "pass"));
+
+        //Verifying success case returns user.
         User user = new User();
         user.setEmail("success");
         user.setPassword(encoder.encode("success"));
         Mockito.when(repository.findByEmail("success")).thenReturn(user);
-        assertNull(service.getUserByCredentials("nullTest", "pass"));
-        assertNull(service.getUserByCredentials("passwordFail", "pass"));
         assertEquals(service.getUserByCredentials("success", "success"), user);
     }
 
     @Test
     void getUserByEmail() {
         ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        service.getUserByEmail("test@email.com");
+        User user = new User();
+        Mockito.when(repository.findByEmail("test@email.com")).thenReturn(user);
+
+        //Tests that service is piping return from repository.
+        assertEquals(service.getUserByEmail("test@email.com"), user);
+
+        //Tests that argument is being piped to repository
         verify(repository).findByEmail(stringArgumentCaptor.capture());
         assertEquals(stringArgumentCaptor.getValue(), "test@email.com");
     }
@@ -105,7 +123,12 @@ class UserServiceImplTest {
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
         User user = new User(1L, "test", "test", "test", "test");
 
-        service.addUser(user);
+
+        Mockito.when(repository.save(user)).thenReturn(user);
+        //Testing piping return from repository
+        assertEquals(service.addUser(user), user);
+
+        //Tests that argument is being piped to repository
         verify(repository).save(userArgumentCaptor.capture());
         assertTrue(encoder.matches("test", userArgumentCaptor.getValue().getPassword()));
         assertEquals(userArgumentCaptor.getValue(), user);
@@ -131,13 +154,15 @@ class UserServiceImplTest {
 
         Mockito.when(repository.findById(Mockito.anyLong())).thenReturn(Optional.of(user));
         service.updateUser(1L, user);
-        verify(repository).save(userArgumentCaptor.capture());
 
-        //Checking encoder
-        assertTrue(encoder.matches("test", userArgumentCaptor.getValue().getPassword()));
+        //Verifying piping argument to repository method.
+        verify(repository).save(userArgumentCaptor.capture());
         assertEquals(userArgumentCaptor.getValue(), user);
 
-        //Checking null check on password
+        //Checking password encoding on user add
+        assertTrue(encoder.matches("test", userArgumentCaptor.getValue().getPassword()));
+
+        //Checking null check on password allows db change on other values.
         User user2 = new User(2L, "test2", null, "test2", "test2");
 
         String password = user.getPassword();
@@ -155,6 +180,8 @@ class UserServiceImplTest {
     void deleteUser() {
         ArgumentCaptor<Long> longArgumentCaptor = ArgumentCaptor.forClass(Long.class);
         service.deleteUser(1L);
+
+        //Verifying piping argument to repository method.
         verify(repository, Mockito.atLeastOnce()).deleteById(longArgumentCaptor.capture());
         assertEquals(longArgumentCaptor.getValue(), 1L);
     }

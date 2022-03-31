@@ -2,20 +2,14 @@ package com.revature.com.loginservice.controller;
 
 import com.revature.com.loginservice.entity.User;
 import com.revature.com.loginservice.exception.UserException;
-import com.revature.com.loginservice.repository.UserRepository;
 import com.revature.com.loginservice.service.UserServiceImpl;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
-import java.io.IOException;
-import java.security.SecureRandom;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -50,6 +44,7 @@ class UserControllerTest {
                 new User(1L, "test", "test", "test", "test")
         );
 
+        //Tests both that controller is using serv.findAll() and that controller is piping return.
         when(service.getAllUsers()).thenReturn(users);
         assertEquals(controller.getAllUsers(), users);
     }
@@ -58,8 +53,12 @@ class UserControllerTest {
     void getUserById() {
         ArgumentCaptor<Long> longArgumentCaptor = ArgumentCaptor.forClass(Long.class);
         controller.getUserById(1L);
+
+        //Testing that controller is piping argument to service.
         verify(service).getUserById(longArgumentCaptor.capture());
         assertEquals(longArgumentCaptor.getValue(), 1L);
+
+        //Testing that controller is piping return from service
         User user = new User();
         when(service.getUserById(1L)).thenReturn(user);
         assertEquals(controller.getUserById(1L), user);
@@ -76,10 +75,13 @@ class UserControllerTest {
                 .thenReturn(new User());
 
         controller.getUserByCredentials("email", "password");
+
+        //Testing that controller is piping argument to service.
         verify(service).getUserByCredentials(stringArgumentCaptor.capture(), stringArgumentCaptor1.capture());
         assertEquals(stringArgumentCaptor.getValue(), "email");
         assertEquals(stringArgumentCaptor1.getValue(), "password");
 
+        //Checking UserException thrown and UserException message
         when(service.getUserByCredentials("", ""))
                 .thenReturn(null);
 
@@ -89,6 +91,7 @@ class UserControllerTest {
 
         assertEquals(ue.getMessage(), "User not found with those credentials.");
 
+        //Testing that controller is piping return from service.
         User user = new User();
         when(service.getUserByCredentials("test", "test")).thenReturn(user);
         assertEquals(controller.getUserByCredentials("test", "test"), user);
@@ -100,13 +103,17 @@ class UserControllerTest {
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
         User user = new User();
         controller.addUser(user);
+
+        //Testing that controller is piping argument to service.
         verify(service).addUser(userArgumentCaptor.capture());
         assertEquals(userArgumentCaptor.getValue(), user);
 
+        //Testing that controller is piping return from service
         User user1 = new User();
         when(service.addUser(user1)).thenReturn(user1);
         assertEquals(controller.addUser(user1), user1);
 
+        //Checking UserException thrown and UserException message
         when(service.addUser(Mockito.any())).thenThrow(new DataIntegrityViolationException("This is a test"));
         UserException ue = assertThrows(
                 UserException.class,
@@ -121,6 +128,7 @@ class UserControllerTest {
         ArgumentCaptor<User> userArgumentCaptor = ArgumentCaptor.forClass(User.class);
         ArgumentCaptor<Long> longArgumentCaptor = ArgumentCaptor.forClass(Long.class);
 
+        //Testing that controller is piping argument to service.
         User user = new User();
         controller.updateUser(1L, user);
         verify(service).updateUser(longArgumentCaptor.capture(), userArgumentCaptor.capture());
@@ -128,6 +136,7 @@ class UserControllerTest {
         assertEquals(longArgumentCaptor.getValue(), 1L);
 
 
+        //Checking UserException thrown and UserException message
         doThrow(new DataIntegrityViolationException("test"))
                 .when(service)
                 .updateUser(Mockito.anyLong(), Mockito.any());
@@ -144,6 +153,8 @@ class UserControllerTest {
     void deleteUser() {
         ArgumentCaptor<Long> longArgumentCaptor = ArgumentCaptor.forClass(Long.class);
         controller.deleteUser(1L);
+
+        //Testing that controller is piping argument to service.
         verify(service).deleteUser(longArgumentCaptor.capture());
         assertEquals(longArgumentCaptor.getValue(), 1L);
     }
