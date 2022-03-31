@@ -53,10 +53,11 @@ public class ProductService {
     }
 
 
-    public Iterable<Product> saveToDb(List<Product> product){
+    public Iterable<Product> saveToDb(List<Product> product) {
         return repository.saveAll(product);
+    }
 
-    public List<String> getProductNames(){
+    public List<String> getProductNames() {
         List<Product> productList = repository.findAll();
 
         List<String> stringList = productList.stream()
@@ -65,7 +66,6 @@ public class ProductService {
 
         return stringList;
 
+
     }
-
-
 }
