@@ -2,12 +2,15 @@ package com.revature.com.loginservice.service;
 
 import com.revature.com.loginservice.entity.User;
 import com.revature.com.loginservice.repository.UserRepository;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Builder
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -23,7 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserById(Long id) {
-        return repository.findById(id).get();
+        return repository.findById(id).orElse(null);
     }
 
     @Override
@@ -49,7 +52,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(Long id, User user) {
-        User userDb = repository.findById(id).get();
+        User userDb = repository.findById(id).orElse(null);
+        if(userDb == null)
+            return;
         userDb.setEmail(user.getEmail());
         if(user.getPassword() != null)
             userDb.setPassword(passwordEncoder.encode(user.getPassword()));
