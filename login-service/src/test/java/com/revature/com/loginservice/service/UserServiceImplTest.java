@@ -29,7 +29,10 @@ class UserServiceImplTest {
     static void beforeAll() {
         repository = Mockito.mock(UserRepository.class);
         encoder = new BCryptPasswordEncoder(10, new SecureRandom());
-        service = new UserServiceImpl(repository, encoder);
+        service = UserServiceImpl
+                .builder()
+                .repository(repository)
+                .passwordEncoder(encoder).build();
     }
 
     @AfterEach
@@ -92,7 +95,7 @@ class UserServiceImplTest {
     @Test
     void getUserByEmail() {
         ArgumentCaptor<String> stringArgumentCaptor = ArgumentCaptor.forClass(String.class);
-        service.getUserByCredentials("test@email.com", "test@email.com");
+        service.getUserByEmail("test@email.com");
         verify(repository).findByEmail(stringArgumentCaptor.capture());
         assertEquals(stringArgumentCaptor.getValue(), "test@email.com");
     }

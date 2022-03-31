@@ -31,7 +31,10 @@ class UserControllerTest {
     @BeforeAll
     static void beforeAll() {
         service = Mockito.mock(UserServiceImpl.class);
-        controller = new UserController(service);
+        controller = UserController
+                .builder()
+                .userService(service)
+                .build();
     }
 
     @AfterEach
