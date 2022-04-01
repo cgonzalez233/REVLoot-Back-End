@@ -7,10 +7,13 @@ import com.revature.productservice.repository.ProductRepository;
 import com.revature.productservice.service.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Null;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
 class ProductServiceApplicationTests {
@@ -39,6 +42,25 @@ class ProductServiceApplicationTests {
 	void getProduct(){
 		service.addProducts(this.products);
 		assert(service.getAllProduct().get(1).getProductName().equals(products[1].getProductName()));
+	}
+
+	@Test
+	void deleteProduct(){
+		service.deleteProduct(1L);
+		assertThrows(Exception.class, ()-> service.getProductById(1L)) ;
+	}
+
+	@Test
+	void getProductNames(){
+		service.addProducts(products);
+		assert(service.getProductNames().contains(products[1].getProductName()));
+	}
+
+	@Test
+	void updateProduct(){
+		Long id = service.addProduct(products[0]).getId();
+		service.updateProduct(id, products[1]);
+		assert(service.getProductByName(products[1].getProductName()).get(0).getPrice() == products[1].getPrice());
 	}
 
 	@Test

@@ -57,14 +57,16 @@ public class ProductService {
         return repository.saveAll(product);
     }
 
-    public List<String> getProductNames() {
-        List<Product> productList = repository.findAll();
+        public List<String> getProductNames () {
+            List<Product> productList = repository.findAll();
 
-        List<String> stringList = productList.stream()
-                .map(Product::getProductName)
-                .collect(Collectors.toList());
+            List<String> stringList = productList.stream()
+                    .map(Product::getProductName)
+                    .collect(Collectors.toList());
 
-        return stringList;
+            return stringList;
+        }
+
 
 
     }
