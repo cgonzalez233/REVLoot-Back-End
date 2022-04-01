@@ -3,13 +3,16 @@ package com.revature.com.loginservice.controller;
 import com.revature.com.loginservice.entity.User;
 import com.revature.com.loginservice.exception.UserException;
 import com.revature.com.loginservice.service.UserService;
+import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Builder
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api/v1/users")
 public class UserController {
     @Autowired
