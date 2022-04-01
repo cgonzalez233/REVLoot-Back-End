@@ -54,6 +54,12 @@ class ProductServiceApplicationTests {
 		assert(foundproducts.get(0).getPrice() == this.products[0].getPrice());
 	}
 
+	@Test
+	void getProductNames(){
+		service.addProducts(products);
+		assert(service.getProductNames().contains(products[1].getProductName()));
+	}
+
 
 	@Test
 	void contextLoads() {
