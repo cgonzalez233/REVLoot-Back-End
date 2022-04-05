@@ -38,7 +38,7 @@ REVLoot Front-End and Back-End:
 https://github.com/sm8192/REVLoot-Front-End.git  
 https://github.com/sm8192/REVLoot-Back-End.git  
 
-###### To get started, initialize RevLoot Backend Repository   
+### To get started, initialize RevLoot Backend Repository   
 Initialize Spring Boot by clicking “run” to commence build  
 Next, “run” Service-Registry   
 Second, “run” Config-Server  
@@ -46,7 +46,7 @@ Third, “run” Login-Service
 Fourth, “run” Product-Service  
 Lastly, “run” Cloud-Gateway    
 
-##### To get started, Initialize RevLoot Frontend Repository
+### To get started, Initialize RevLoot Frontend Repository
 This project was generated with Angular CLI version 13.2.5.   
 Run ng serve for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.  
 
@@ -88,7 +88,7 @@ alt="User Login"
 
 
 # Collaborators
-- *Scrum Master - Shane Moorhead*
+*Scrum Master - Shane Moorhead*
 
 **Team I:** Login / Register
  Team lead : Vivian Anderson
