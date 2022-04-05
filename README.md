@@ -5,21 +5,21 @@ RevLoot supports a larger strategic framework to enable other developers, design
 Revloot provides users the ability to set up an account, and store login details which can be modified or deleted by the user at any time.  Setup is simple, as password hashing is enabled, which allows the user to focus on tailoring their profile for individuality or as a company.  The application provides the user a pleasurable shopping experience while embodying the company’s slogan **“Designed for ease. Loved for style”.**
 
 
-# Technology Used
-**Front-End**
+# Technology Used  <img src="https://img.shields.io/badge/Technology-Use-orange"/>
+**Front-End**  <img src="https://img.shields.io/badge/Front-End--User-blue"/>
 - Javascript
 * HTML
 * CSS
 * Bootstrap 5.1 & Bootstrap-Icons
 * Angular CLI  version 13.2.5
 
-**Back-End**
+**Back-End**  <img src="https://img.shields.io/badge/Back-End--User-success"/>
 * Spring boot
 * RDBC
 * Hibernate
 * Intellij Version: 2021.3.3
 
-# Features
+# Features  <img src="https://img.shields.io/badge/Key-Features-important"/>
 - Login
 - Register for account
 - Display Products
