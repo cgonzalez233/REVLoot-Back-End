@@ -12,6 +12,19 @@
 
 
 # Usage
+<img src="https://media.discordapp.net/attachments/958083543974695034/958748302109737041/unknown.png?width=1078&height=606"
+alt="User Register"  
+style="float: left; margin-right: 10px"
+width="200"/> <img src="https://media.discordapp.net/attachments/958083543974695034/958748302352990238/unknown.png?width=1078&height=606"
+alt="User Login"
+ style="float: left; margin-right: 10px"
+ width="200"/> <img src="https://media.discordapp.net/attachments/958083473443291176/958801062704341112/unknown.png?width=996&height=606"
+ alt="Shopping Cart"
+ style="float: left; margin-right: 10px"                   
+  width="200"/> <img src="https://media.discordapp.net/attachments/958083473443291176/958800849067470918/unknown.png?width=1236&height=607"
+   alt="CheckOut"
+  style="float: left; margin-right: 10px"
+  width="200"/>
 
 
 # Collaborators
