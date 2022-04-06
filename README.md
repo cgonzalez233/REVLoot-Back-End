@@ -12,9 +12,12 @@ Revloot provides users the ability to set up an account, and store login details
 * CSS
 * Bootstrap 5.1 & Bootstrap-Icons
 * Angular CLI  version 13.2.5
+* Jenkins
+- H2 Database
+- Mockaroo
 
 **Back-End**  <img src="https://img.shields.io/badge/Back-End--User-success"/>
-* Spring boot
+* Spring Boot
 * RDBC
 * Hibernate
 * Intellij Version: 2021.3.3
@@ -28,9 +31,7 @@ Revloot provides users the ability to set up an account, and store login details
 - Shopping Cart
 - Checkout
 - Password hashing
-- Jenkins
-- H2 Database
-- Mockaroo
+
 
 
 # Getting Started  :point_down:
