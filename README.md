@@ -1,4 +1,4 @@
-# REVLoot-Back-End  <img src="https://img.shields.io/badge/RevLoot-Back--End-orange"/>
+<img src="https://img.shields.io/badge/RevLoot-Back--End-orange"/>
 
 # Project Description
 RevLoot supports a larger strategic framework to enable other developers, designers, and programmers to develop and add new functions/enhancements. Its primary design implements an e-commerce application for the company Revature.  Revloot provides users the ability to view all products and services promoted by the company for purchase.  Ranging from $0.00 and up, shoppers can add services/products to their shopping cart, edit the shopping cart as well as remove items from the cart.  Items can be added in multiple quantities, from various categories all simultaneously.  
@@ -39,7 +39,7 @@ https://github.com/sm8192/REVLoot-Front-End.git
 https://github.com/sm8192/REVLoot-Back-End.git  
 
 ### To get started, initialize RevLoot Backend Repository   
-Initialize Spring Boot by clicking “run” to commence build  
+Begin by opening Intellij to commence build  
 Next, “run” Service-Registry   
 Second, “run” Config-Server  
 Third, “run” Login-Service  
