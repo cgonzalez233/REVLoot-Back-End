@@ -33,7 +33,7 @@ Revloot provides users the ability to set up an account, and store login details
 - Mockaroo
 
 
-# Getting Started
+# Getting Started  :point_down:
 REVLoot Front-End and Back-End:  
 https://github.com/sm8192/REVLoot-Front-End.git  
 https://github.com/sm8192/REVLoot-Back-End.git  
